@@ -1,0 +1,85 @@
+:root {
+  --vt-c-white: #eef0f4;
+  --vt-c-white-soft: #ffffff;
+
+  --vt-c-black: #131316;
+  --vt-c-black-soft: #1f2026;
+
+  --vt-c-text-light-1: black;
+  --vt-c-text-light-2: #202020;
+  --vt-c-text-dark-1: white;
+  --vt-c-text-dark-2: #8f8f8f;
+}
+
+:root {
+  --color-background: var(--vt-c-white);
+  --color-background-soft: var(--vt-c-white-soft);
+
+  --color-text: var(--vt-c-text-light-1);
+  --color-text-soft: var(--vt-c-text-light-2);
+}
+
+.dark {
+  --color-background: var(--vt-c-black);
+  --color-background-soft: var(--vt-c-black-soft);
+
+  --color-text: var(--vt-c-text-dark-1);
+  --color-text-soft: var(--vt-c-text-dark-2);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  font-weight: 800;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
