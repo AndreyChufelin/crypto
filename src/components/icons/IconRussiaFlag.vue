@@ -1,0 +1,35 @@
+<template>
+  <svg
+    class="icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    viewBox="0 0 47.5 47.5"
+  >
+    <defs>
+      <clipPath id="a"><path d="M0 38h38V0H0v38Z" /></clipPath>
+    </defs>
+    <g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)">
+      <path fill="#dd2e44" d="M37 10a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v4h36v-4z" />
+      <path fill="#3b88c3" d="M37 14H1v10h36V14Z" />
+      <path fill="#eee" d="M33 32H5a4 4 0 0 1-4-4v-4h36v4a4 4 0 0 1-4 4" />
+    </g>
+  </svg>
+</template>
+
+<style scoped>
+.st0 {
+  fill: #ffffff;
+}
+.st1 {
+  fill: #d52b1e;
+}
+.st2 {
+  fill: #0039a6;
+}
+.st3 {
+  fill: none;
+  stroke: #cccccc;
+  stroke-width: 0.1199;
+  stroke-miterlimit: 2.6131;
+}
+</style>
