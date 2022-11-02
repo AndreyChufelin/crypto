@@ -5,6 +5,9 @@
   transition: color 0.25s;
 }
 
+.link.router-link-exact-active {
+  color: var(--color-additional);
+}
 .link:hover,
 .link:focus {
   outline: none;

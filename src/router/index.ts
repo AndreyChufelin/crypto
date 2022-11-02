@@ -8,6 +8,21 @@ const router = createRouter({
       name: "home",
       component: () => import("../views/HomeView.vue"),
     },
+    {
+      path: "/coin/:id",
+      name: "singleAsset",
+      component: () => import("../views/SingleAssetView.vue"),
+    },
+    {
+      path: "/exchanges",
+      name: "exchanges",
+      component: () => import("../views/ExchangesView.vue"),
+    },
+    {
+      path: "/search/:search",
+      name: "searchAsset",
+      component: () => import("../views/SearchAssetView.vue"),
+    },
   ],
 });
 

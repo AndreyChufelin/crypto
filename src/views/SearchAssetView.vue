@@ -3,8 +3,8 @@ import AssetsTable from "@/components/AssetsTable.vue";
 </script>
 
 <template>
-  <div class="home">
-    <AssetsTable />
+  <div class="search-asset">
+    <AssetsTable :search="$route.params.search as string" />
   </div>
 </template>
 

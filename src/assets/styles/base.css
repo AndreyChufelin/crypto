@@ -1,9 +1,11 @@
 :root {
   --vt-c-white: #eef0f4;
   --vt-c-white-soft: #ffffff;
+  --vt-c-white-soft-2: #dbdbdb;
 
   --vt-c-black: #131316;
   --vt-c-black-soft: #1f2026;
+  --vt-c-black-soft-2: #3b3d47;
 
   --vt-c-text-light-1: black;
   --vt-c-text-light-2: #7a7a7a;
@@ -14,8 +16,11 @@
 :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
+  --color-background-soft-2: var(--vt-c-white-soft-2);
 
   --color-additional: #d19cff;
+  --color-positive: #44f189;;
+  --color-negative: #b93838;
 
   --color-text: var(--vt-c-text-light-1);
   --color-text-soft: var(--vt-c-text-light-2);
@@ -24,6 +29,7 @@
 .dark {
   --color-background: var(--vt-c-black);
   --color-background-soft: var(--vt-c-black-soft);
+  --color-background-soft-2: var(--vt-c-black-soft-2);
 
   --color-text: var(--vt-c-text-dark-1);
   --color-text-soft: var(--vt-c-text-dark-2);
@@ -51,8 +57,9 @@
 
 html,
 body,
-#app {
-  height: 100%;
+#app,
+.app {
+  min-height: 100vh;
 }
 
 body {

@@ -1,47 +1,33 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import VueSelect from "./VueSelect.vue";
 import ChangeLanguageButton from "./ChangeLanguageButton.vue";
-import { useAppStore } from "@/stores/app";
 import SearchCoins from "./SearchCoins.vue";
 import ChangeTheme from "./ChangeTheme.vue";
-
-const store = useAppStore();
-
-const currency = computed({
-  get() {
-    return store.currency;
-  },
-  set(value) {
-    store.changeCurrency(value);
-  },
-});
+import SelectCurrency from "./SelectCurrency.vue";
 </script>
 
 <template>
   <header class="header">
     <nav class="header__nav">
-      <a href="/" class="header__logo">Crypto</a>
+      <RouterLink :to="{ name: 'home' }" class="header__logo">
+        Crypto
+      </RouterLink>
       <ul>
         <li>
-          <a href="" class="header__nav-item link">{{ $t("message.coins") }}</a>
+          <RouterLink :to="{ name: 'home' }" class="header__nav-item link">
+            {{ $t("header.coins") }}
+          </RouterLink>
         </li>
         <li>
-          <a href="" class="header__nav-item link">Exchanges</a>
+          <RouterLink :to="{ name: 'exchanges' }" class="header__nav-item link">
+            {{ $t("header.exchanges") }}
+          </RouterLink>
         </li>
       </ul>
     </nav>
     <SearchCoins />
     <ul class="header__settings">
       <li>
-        <VueSelect
-          v-model="currency"
-          :options="[
-            { lable: '$', value: 'dollar' },
-            { lable: '€', value: 'euro' },
-            { lable: '₽', value: 'rubble' },
-          ]"
-        />
+        <SelectCurrency />
       </li>
       <li>
         <ChangeLanguageButton />

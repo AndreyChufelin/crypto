@@ -15,8 +15,10 @@ const selectedOption = ref(props.options[0]);
 
 const isOptionsOpened = ref(false);
 
+selectedOption.value = ref(props.modelValue);
+
 watch(selectedOption, (value) => {
-  emit("update:modelValue", value.lable ?? value);
+  emit("update:modelValue", value);
 });
 
 document.addEventListener("click", () => (isOptionsOpened.value = false));
@@ -30,7 +32,9 @@ document.addEventListener("click", () => (isOptionsOpened.value = false));
     >
       <Transition name="slide-fade" mode="out-in">
         <div :key="modelValue">
-          <slot name="input" :value="modelValue">{{ modelValue }}</slot>
+          <slot name="input" :value="modelValue">
+            {{ modelValue.lable ?? modelValue }}
+          </slot>
         </div>
       </Transition>
       <IconArrow
@@ -38,8 +42,8 @@ document.addEventListener("click", () => (isOptionsOpened.value = false));
         :class="{ select__arrow_opened: isOptionsOpened }"
       />
     </button>
-    <Transition name="slide-fade">
-      <ul class="select__options" v-if="isOptionsOpened">
+    <Transition v-show="isOptionsOpened" name="slide-fade">
+      <ul class="select__options">
         <li v-for="option in options" :key="option.lable ?? option">
           <button class="select__options-item" @click="selectedOption = option">
             <slot name="option" :message="option.lable ?? option">{{
@@ -47,6 +51,7 @@ document.addEventListener("click", () => (isOptionsOpened.value = false));
             }}</slot>
           </button>
         </li>
+        <slot name="additional"></slot>
       </ul>
     </Transition>
   </div>
