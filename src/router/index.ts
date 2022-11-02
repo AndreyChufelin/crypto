@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import("../views/SingleAssetView.vue"),
     },
     {
+      path: "/exchange/:id",
+      name: "singleExchange",
+      component: () => import("../views/SingleExchangeView.vue"),
+    },
+    {
       path: "/exchanges",
       name: "exchanges",
       component: () => import("../views/ExchangesView.vue"),

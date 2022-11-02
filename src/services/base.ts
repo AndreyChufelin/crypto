@@ -123,7 +123,15 @@ export function useRequest() {
       };
 
       await baseCall(path, optionsPagination, async (data: Array<T>) => {
-        await cb(data, limit, offset);
+        if (data.length > 0) {
+          await cb(data, limit, offset);
+
+          if (data.length < limit) {
+            isEnd.value = true;
+          }
+        } else {
+          isEnd.value = true;
+        }
       });
     } catch (error) {
       status.value = LoadingStatus.error;

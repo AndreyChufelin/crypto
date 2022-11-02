@@ -10,7 +10,7 @@ import { useAppStore } from "@/stores/app";
 import { useExchanges } from "@/services/exchanges";
 import { useI18n } from "vue-i18n";
 
-const props = defineProps<{ id?: string }>();
+const props = defineProps<{ id?: string; exchangeId?: string }>();
 
 const { t } = useI18n();
 
@@ -24,7 +24,7 @@ const {
   status: statusExchange,
   getExchanges,
 } = useExchanges();
-getExchanges(props.id ?? null, page.value);
+getExchanges(props.id ?? null, page.value, props.exchangeId);
 
 const columns = computed(() => [
   {
@@ -72,7 +72,7 @@ const columns = computed(() => [
 ]);
 
 watch(page, () => {
-  getExchanges(props.id ?? null, page.value);
+  getExchanges(props.id ?? null, page.value, props.exchangeId);
 });
 </script>
 
@@ -86,7 +86,14 @@ watch(page, () => {
         v-for="exchange in exchanges"
         :key="exchange.pair + exchange.exchange"
       >
-        <TableCell :column="columns[0]">{{ exchange.exchange }}</TableCell>
+        <TableCell :column="columns[0]">
+          <router-link
+            class="link"
+            :to="{ name: 'singleExchange', params: { id: exchange.exchange } }"
+          >
+            {{ exchange.exchange }}
+          </router-link>
+        </TableCell>
         <TableCell :column="columns[1]">{{ exchange.pair }}</TableCell>
         <TableCell :column="columns[2]"
           >{{ currencyLable }}{{ exchange.price }}</TableCell

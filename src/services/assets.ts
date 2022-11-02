@@ -38,13 +38,9 @@ export function useAssets() {
       { parametrs: { search } },
       page,
       async (data) => {
-        if (data.length > 0) {
-          data.forEach((asset) => {
-            assets.value.push(formatAsset(asset));
-          });
-        } else {
-          isEnd.value = true;
-        }
+        data.forEach((asset) => {
+          assets.value.push(formatAsset(asset));
+        });
       }
     );
   }
