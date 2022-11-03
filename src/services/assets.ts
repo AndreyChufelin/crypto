@@ -31,6 +31,7 @@ function formatAsset(asset: any) {
 export function useAssets() {
   const assets = ref<Asset[]>([]);
   const { status, message, isEnd, callPagination } = useRequest();
+  const sockets: Array<WebSocket> = [];
 
   async function getAssets(page = 1, search?: string) {
     await callPagination(
@@ -38,11 +39,43 @@ export function useAssets() {
       { parametrs: { search } },
       page,
       async (data) => {
+        const assetIds = data.reduce((previousValue, asset, index) => {
+          if (index > 0) {
+            return `${previousValue},${(asset as { id: string }).id}`;
+          }
+        }, "");
+
+        const pricesWs = new WebSocket(
+          `wss://ws.coincap.io/prices?assets=${assetIds}`
+        );
+        sockets.push(pricesWs);
+
+        pricesWs.onmessage = function (msg) {
+          const data = JSON.parse(msg.data);
+
+          if (assets.value) {
+            Object.keys(data).forEach((updatedAsset) => {
+              const currentAsset = assets.value.find(
+                (asset) => asset.id === updatedAsset
+              );
+              if (currentAsset) {
+                currentAsset.price = formatNumber(
+                  usdToCurrentCurrency(data[updatedAsset])
+                );
+              }
+            });
+          }
+        };
+
         data.forEach((asset) => {
           assets.value.push(formatAsset(asset));
         });
       }
     );
+  }
+
+  function closeWebsocket() {
+    sockets.forEach((socket) => socket.close());
   }
 
   watch(
@@ -60,6 +93,7 @@ export function useAssets() {
     message,
     isEnd,
     getAssets,
+    closeWebsocket,
   };
 }
 
@@ -69,12 +103,27 @@ export function useAsset() {
   const { status, call } = useRequest();
   const asset = ref<Asset>();
   const lastId = ref("");
+  let pricesWs: WebSocket;
 
   async function getAsset(id: string) {
     lastId.value = id;
-    await call(`assets/${id}`, {}, async (data) => {
+    await call(`assets/${id}`, {}, async (data: { [key: string]: unknown }) => {
+      pricesWs = new WebSocket(`wss://ws.coincap.io/prices?assets=${id}`);
+
+      pricesWs.onmessage = function (msg) {
+        const data = JSON.parse(msg.data);
+
+        if (asset.value) {
+          asset.value.price = formatNumber(usdToCurrentCurrency(data[id]));
+        }
+      };
+
       asset.value = formatAsset(data);
     });
+  }
+
+  function closeWebsocket() {
+    pricesWs.close();
   }
 
   watch(currentRate, () => {
@@ -86,6 +135,7 @@ export function useAsset() {
     status,
     asset,
     getAsset,
+    closeWebsocket,
   };
 }
 

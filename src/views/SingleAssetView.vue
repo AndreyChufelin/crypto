@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAsset, useAssetHistory } from "../services/assets";
-import { useRoute } from "vue-router";
+import { onBeforeRouteLeave, useRoute } from "vue-router";
 import VueChart from "../components/VueChart.vue";
 import ChartChooseInterval from "../components/ChartChooseInterval.vue";
 import { ref, watch } from "vue";
@@ -12,13 +12,17 @@ const route = useRoute();
 
 const interval = ref("m1");
 
-const { asset, status, getAsset } = useAsset();
+const { asset, status, getAsset, closeWebsocket } = useAsset();
 const { assetHistory, getAssetHistory } = useAssetHistory();
 
 (async () => {
   await getAsset(route.params.id as string);
   getAssetHistory(route.params.id as string, interval.value);
 })();
+
+onBeforeRouteLeave(() => {
+  closeWebsocket();
+});
 
 watch(interval, () => {
   if (asset.value && status.value === LoadingStatus.ready) {

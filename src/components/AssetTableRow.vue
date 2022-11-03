@@ -8,6 +8,7 @@ import type { Cell } from "./VueTable.vue";
 import VueChart from "./VueChart.vue";
 import { watch } from "vue";
 import { useAppStore } from "@/stores/app";
+import TablePriceField from "./TablePriceField.vue";
 
 const props = defineProps<{
   columns: Array<Cell>;
@@ -44,7 +45,7 @@ watch(
       </RouterLink>
     </TableCell>
     <TableCell :column="columns[2]">
-      {{ currencyLable }}{{ token.price }}
+      <TablePriceField :price="token.price" />
     </TableCell>
     <TableCell :column="columns[3]">
       {{ currencyLable }}{{ token.marketCap }}

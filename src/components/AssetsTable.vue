@@ -6,6 +6,7 @@ import { useAssets } from "@/services/assets";
 import TablePagination from "../components/TablePagination.vue";
 import AssetTableRow from "@/components/AssetTableRow.vue";
 import { useI18n } from "vue-i18n";
+import { onBeforeRouteLeave } from "vue-router";
 
 const props = defineProps<{
   search?: string;
@@ -73,8 +74,13 @@ const columns = computed(() => [
 const page = ref(1);
 const showChart = ref(null);
 
-const { status, assets, isEnd, message, getAssets } = useAssets();
+const { status, assets, isEnd, message, getAssets, closeWebsocket } =
+  useAssets();
 getAssets(page.value, props.search);
+
+onBeforeRouteLeave(() => {
+  closeWebsocket();
+});
 
 watch(page, () => getAssets(page.value, props.search));
 </script>
