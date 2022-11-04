@@ -1,7 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <footer class="footer"><a class="footer__link" href="#">Github</a></footer>
+  <footer class="footer">
+    <a class="footer__link" href="https://github.com/AndreyChufelin/crypto/">
+      Github
+    </a>
+  </footer>
 </template>
 
 <style scoped>
