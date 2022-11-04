@@ -1,0 +1,1 @@
+import{_ as e}from"./ExchangeTable.vue_vue_type_script_setup_true_lang.45206140.js";import{d as a,c as o,a as t,o as n}from"./index.6a09b27b.js";import"./TableCell.6555dbc0.js";const i=a({__name:"ExchangesView",setup(r){return(c,s)=>(n(),o("div",null,[t(e)]))}});export{i as default};

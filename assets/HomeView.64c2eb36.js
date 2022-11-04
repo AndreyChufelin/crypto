@@ -1,0 +1,1 @@
+import{_ as e}from"./AssetsTable.vue_vue_type_script_setup_true_lang.b8c274f9.js";import{d as o,c as t,a,o as s}from"./index.6a09b27b.js";import"./TableCell.6555dbc0.js";import"./VueChart.8103c372.js";const r={class:"home"},f=o({__name:"HomeView",setup(c){return(m,_)=>(s(),t("div",r,[a(e)]))}});export{f as default};
