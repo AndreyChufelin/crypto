@@ -1,4 +1,9 @@
 # crypto
+![JavaScript](https://img.shields.io/badge/-JavaScript-0d1117?style=flat-square&logo=javascript)
+![TypeScript](https://img.shields.io/badge/-TypeScript-0d1117?style=flat-square&logo=typescript)
+![Vue](https://img.shields.io/badge/-Vue-0d1117?style=flat-square&logo=vue.js)
+![Pinia](https://img.shields.io/badge/-Pinia-0d1117?style=flat-square)
+
 demo: https://andreychufelin.github.io/crypto/
 
 ![alt text for screen readers](https://github.com/AndreyChufelin/crypto/blob/master/screenshots/main.png?raw=true "Text to show on mouseover")
